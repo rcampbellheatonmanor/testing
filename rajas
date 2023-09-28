@@ -1,0 +1,71 @@
+def writetotextfile(name):
+    file = open("class1.txt", "a")
+    file.write(name)
+    file.close()
+
+def writenumbertofile(score):
+    file = open("score.txt", "a")
+    file.write(str(score))
+    file.close()
+
+def displaylist(names):
+    print("Here are the names in the list:")
+    file = open("class1.txt", "r")
+    for name in names:
+        file.read("%s\n" % name)
+        print(name)
+
+def displaylist2(scores):
+    print("Here are the names in the list:")
+    file = open("score.txt", "r")
+    for score in scores:
+        file.read("%s\n" % score)
+        print(score)
+
+def questions():
+    score = 0
+    questions = ["1. What is 25+54?", "2. What is 79-56?", "3. what is 14 x 6", "4. what is 121 divided by 11", "5. what is 49+63", "6. what is 61-22", "7.what is 15 x 15", "8. what is 321 divided by 3", "9. what is 12+11 x 2 divided by 0", "10. what is 89-67"]
+    for question in questions:
+        answer = input(f"{question} :")
+        if answer == "79" or answer == "23" or answer == "84" or answer == "11" or answer == "112" or answer == "39" or answer == "125" or answer == "17" or answer == "0" or answer == "22":
+            print("well done you are correct!")
+            score = score+1
+        else:
+            print("sorry, incorrect!")
+            score = score-1
+    print("your score is", score)
+    return score
+
+#----------------------------------------------------------------------
+
+while True:
+    print("-----Menu-----")
+    print("1. Student")
+    print("2. Teacher")
+    print("3. Exit")
+    menu = input("Enter your opinion:\n")
+    if menu == "1":
+        name = input('Hello what is your name?\n')
+        writetotextfile(name)
+        print("your name is now added to the class record.")
+        score = questions()
+        writenumbertofile(score)
+        print("your score is added to the file.")
+    elif menu == "2":
+        print("Here are the names in class 1.")
+        names = []
+        with open("class1.txt", "r") as f:
+            for line in f:
+                names.append(line.strip())
+        displaylist(names)
+
+        scores = []
+        with open("score.txt", "r") as f:
+            for line in f:
+                scores.append(line.strip())
+        displaylist2(scores)
+        break
+    elif menu == "3":
+        exit()
+    else:
+        print("Enter 1 to 4 only")
